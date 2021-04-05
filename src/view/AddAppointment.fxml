@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddAppointment">
+<AnchorPane prefHeight="600.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointmentController">
    <children>
       <VBox layoutX="-1.0" layoutY="-5.0" prefHeight="610.0" prefWidth="450.0">
          <children>
@@ -97,16 +97,16 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <ComboBox prefWidth="175.0" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <DatePicker maxWidth="120.0" minWidth="120.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <DatePicker maxWidth="120.0" minWidth="120.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <ComboBox prefWidth="175.0" promptText="Customer_ID" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <ComboBox prefWidth="175.0" promptText="User_ID" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <ComboBox prefWidth="175.0" promptText="Meeting type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="addContactCombo" prefWidth="175.0" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="addAppointment_IDText" GridPane.columnIndex="1" />
+                  <TextField fx:id="addTitleText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="addDescriptionText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="addLocationText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <DatePicker fx:id="addStartDatePicker" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <DatePicker fx:id="addEndDatePicker" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <ComboBox fx:id="addCustomer_IDCombo" prefWidth="175.0" promptText="Customer_ID" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <ComboBox fx:id="addUser_IDCombo" prefWidth="175.0" promptText="User_ID" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <ComboBox fx:id="addTypeCombo" prefWidth="175.0" promptText="Meeting type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Start Time:" GridPane.rowIndex="7">
                      <font>
                         <Font size="16.0" />
@@ -119,17 +119,17 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
-                        <ComboBox prefWidth="85.0" promptText="Hour">
+                        <ComboBox fx:id="addStartHourCombo" prefWidth="85.0" promptText="Hour">
                            <HBox.margin>
                               <Insets right="3.0" />
                            </HBox.margin>
                         </ComboBox>
-                        <ComboBox prefWidth="85.0" promptText="Min">
+                        <ComboBox fx:id="addStartMinCombo" prefWidth="85.0" promptText="Minute">
                            <HBox.margin>
                               <Insets left="3.0" right="3.0" />
                            </HBox.margin>
                         </ComboBox>
-                        <ComboBox prefWidth="85.0" promptText="AM/PM">
+                        <ComboBox fx:id="addStartAMPMCombo" prefWidth="85.0" promptText="AM/PM">
                            <HBox.margin>
                               <Insets left="3.0" />
                            </HBox.margin>
@@ -138,17 +138,17 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <children>
-                        <ComboBox prefWidth="85.0" promptText="Hour">
+                        <ComboBox fx:id="addEndHourCombo" prefWidth="85.0" promptText="Hour">
                            <HBox.margin>
                               <Insets right="3.0" />
                            </HBox.margin>
                         </ComboBox>
-                        <ComboBox prefWidth="85.0" promptText="Min">
+                        <ComboBox fx:id="addEndMinCombo" prefWidth="85.0" promptText="Minute">
                            <HBox.margin>
                               <Insets left="3.0" right="3.0" />
                            </HBox.margin>
                         </ComboBox>
-                        <ComboBox prefWidth="85.0" promptText="AM/PM">
+                        <ComboBox fx:id="addEndAMPMCombo" prefWidth="85.0" promptText="AM/PM">
                            <HBox.margin>
                               <Insets left="3.0" />
                            </HBox.margin>
@@ -159,12 +159,12 @@
             </GridPane>
             <ButtonBar prefHeight="65.0" prefWidth="450.0">
               <buttons>
-                <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" text="Submit">
+                <Button mnemonicParsing="false" onAction="#submitAddAppointmentInfoHandler" prefHeight="35.0" prefWidth="70.0" text="Submit">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" text="Cancel">
+                  <Button mnemonicParsing="false" onAction="#cancelAddAppointmentInfoHandler" prefHeight="35.0" prefWidth="70.0" text="Cancel">
                      <font>
                         <Font size="14.0" />
                      </font>

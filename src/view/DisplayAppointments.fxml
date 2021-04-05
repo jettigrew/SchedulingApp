@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DisplayAppointments">
+<AnchorPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DisplayAppointmentsController">
    <children>
       <VBox prefHeight="600.0" prefWidth="950.0">
          <children>
@@ -26,51 +26,51 @@
               <tabs>
                 <Tab text="This Week">
                      <content>
-                        <TableView prefHeight="550.0" prefWidth="850.0">
+                        <TableView fx:id="weekAppointmentsTable" prefHeight="550.0" prefWidth="850.0">
                           <columns>
-                            <TableColumn prefWidth="99.20001220703125" text="Appointment_ID" />
-                            <TableColumn prefWidth="74.0" text="Title" />
-                              <TableColumn prefWidth="111.60002136230469" text="Description" />
-                              <TableColumn prefWidth="96.4000244140625" text="Location" />
-                              <TableColumn prefWidth="82.0" text="Contact" />
-                              <TableColumn prefWidth="62.79998779296875" text="Type" />
-                              <TableColumn prefWidth="150.79998779296875" text="Start Date/Time" />
-                              <TableColumn prefWidth="133.5999755859375" text="End Date/Time" />
-                              <TableColumn prefWidth="89.5999755859375" text="Customer_ID" />
+                            <TableColumn fx:id="weekAppointmentsAppointment_IDCol" prefWidth="100.0" text="Appointment_ID" />
+                            <TableColumn fx:id="weekAppointmentsTitleCol" prefWidth="75.0" text="Title" />
+                              <TableColumn fx:id="weekAppointmentsDescriptionCol" prefWidth="110.0" text="Description" />
+                              <TableColumn fx:id="weekAppointmentsLocationCol" prefWidth="95.0" text="Location" />
+                              <TableColumn fx:id="weekAppointmentsContactCol" prefWidth="85.0" text="Contact" />
+                              <TableColumn fx:id="weekAppointmentsTypeCol" prefWidth="65.0" text="Type" />
+                              <TableColumn fx:id="weekAppointmentsStartCol" prefWidth="140.0" text="Start Date/Time" />
+                              <TableColumn fx:id="weekAppointmentsEndCol" prefWidth="140.0" text="End Date/Time" />
+                              <TableColumn fx:id="weekAppointmentsCustomer_IDCol" prefWidth="89.5999755859375" text="Customer_ID" />
                           </columns>
                         </TableView>
                      </content>
                 </Tab>
                   <Tab text="This Month">
                      <content>
-                        <TableView prefHeight="550.0" prefWidth="850.0">
+                        <TableView fx:id="monthAppointmentsTable" prefHeight="550.0" prefWidth="850.0">
                            <columns>
-                              <TableColumn prefWidth="99.20001220703125" text="Appointment_ID" />
-                              <TableColumn prefWidth="79.19999694824219" text="Title" />
-                              <TableColumn prefWidth="105.99998474121094" text="Description" />
-                              <TableColumn prefWidth="75.5999755859375" text="Location" />
-                              <TableColumn prefWidth="102.4000244140625" text="Contact" />
-                              <TableColumn prefWidth="62.79998779296875" text="Type" />
-                              <TableColumn prefWidth="113.199951171875" text="Start Date/Time" />
-                              <TableColumn prefWidth="115.60009765625" text="End Date/Time" />
-                              <TableColumn prefWidth="97.199951171875" text="Customer_ID" />
+                              <TableColumn fx:id="monthAppointmentsAppointment_IDCol" prefWidth="100.0" text="Appointment_ID" />
+                              <TableColumn fx:id="monthAppointmentsTitleCol" prefWidth="75.0" text="Title" />
+                              <TableColumn fx:id="monthAppointmentsDescriptionCol" prefWidth="110.0" text="Description" />
+                              <TableColumn fx:id="monthAppointmentsLocationCol" prefWidth="95.0" text="Location" />
+                              <TableColumn fx:id="monthAppointmentsContactCol" prefWidth="85.0" text="Contact" />
+                              <TableColumn fx:id="monthAppointmentsTypeCol" prefWidth="65.0" text="Type" />
+                              <TableColumn fx:id="monthAppointmentsStartCol" prefWidth="140.0" text="Start Date/Time" />
+                              <TableColumn fx:id="monthAppointmentsEndCol" prefWidth="140.0" text="End Date/Time" />
+                              <TableColumn fx:id="monthAppointmentsCustomer_IDCol" prefWidth="89.20001220703125" text="Customer_ID" />
                            </columns>
                         </TableView>
                      </content>
                   </Tab>
                   <Tab text="All Appointments">
                      <content>
-                        <TableView prefHeight="550.0" prefWidth="850.0">
+                        <TableView fx:id="allAppointmentsTable" prefHeight="550.0" prefWidth="850.0">
                            <columns>
-                              <TableColumn prefWidth="99.20001220703125" text="Appointment_ID" />
-                              <TableColumn prefWidth="79.19999694824219" text="Title" />
-                              <TableColumn prefWidth="105.99998474121094" text="Description" />
-                              <TableColumn prefWidth="75.5999755859375" text="Location" />
-                              <TableColumn prefWidth="102.4000244140625" text="Contact" />
-                              <TableColumn prefWidth="62.79998779296875" text="Type" />
-                              <TableColumn prefWidth="113.199951171875" text="Start Date/Time" />
-                              <TableColumn prefWidth="115.60009765625" text="End Date/Time" />
-                              <TableColumn prefWidth="97.199951171875" text="Customer_ID" />
+                              <TableColumn fx:id="allAppointmentsAppointment_IDCol" prefWidth="100.0" text="Appointment_ID" />
+                              <TableColumn fx:id="allAppointmentsTitleCol" prefWidth="75.0" text="Title" />
+                              <TableColumn fx:id="allAppointmentsDescriptionCol" prefWidth="110.0" text="Description" />
+                              <TableColumn fx:id="allAppointmentsLocationCol" prefWidth="95.0" text="Location" />
+                              <TableColumn fx:id="allAppointmentsContactCol" prefWidth="85.0" text="Contact" />
+                              <TableColumn fx:id="allAppointmentsTypeCol" prefWidth="65.0" text="Type" />
+                              <TableColumn fx:id="allAppointmentsStartCol" prefWidth="140.0" text="Start Date/Time" />
+                              <TableColumn fx:id="allAppointmentsEndCol" prefWidth="140.0" text="End Date/Time" />
+                              <TableColumn fx:id="allAppointmentsCustomer_IDCol" prefWidth="89.20001220703125" text="Customer_ID" />
                            </columns>
                         </TableView>
                      </content>
@@ -82,15 +82,15 @@
             </TabPane>
             <ButtonBar prefHeight="50.0" prefWidth="200.0">
               <buttons>
-                <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" text="Add">
+                <Button mnemonicParsing="false" onAction="#addAppointmentHandler" prefHeight="35.0" prefWidth="70.0" text="Add">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button layoutX="785.0" layoutY="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" text="Update">
+                  <Button layoutX="785.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateAppointmentHandler" prefHeight="35.0" prefWidth="70.0" text="Update">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button layoutX="785.0" layoutY="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" text="Delete">
+                  <Button layoutX="785.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteAppointmentHandler" prefHeight="35.0" prefWidth="70.0" text="Delete">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
@@ -99,7 +99,7 @@
                   <Insets left="50.0" right="30.0" top="15.0" />
                </padding>
             </ButtonBar>
-            <Hyperlink text="Customers">
+            <Hyperlink onAction="#customersSwitchHandler" text="Customers">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>
@@ -107,7 +107,7 @@
                   <Font size="18.0" />
                </font>
             </Hyperlink>
-            <Hyperlink layoutX="10.0" layoutY="518.0" text="Reports">
+            <Hyperlink layoutX="10.0" layoutY="518.0" onAction="#reportsSwitchHandler" text="Reports">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>
