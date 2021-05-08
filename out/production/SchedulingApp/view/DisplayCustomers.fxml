@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DisplayAppointments">
+<AnchorPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DisplayCustomersController">
     <children>
         <VBox prefHeight="600.0" prefWidth="950.0">
             <children>
@@ -20,15 +20,15 @@
                         <Font name="Verdana" size="45.0" />
                     </font>
                 </Label>
-                    <TableView prefHeight="320.0" prefWidth="950.0">
+                    <TableView fx:id="customersTable" prefHeight="320.0" prefWidth="950.0">
                         <columns>
-                            <TableColumn prefWidth="89.19998860359192" text="Customer_ID" />
-                            <TableColumn prefWidth="136.7999725341797" text="Name" />
-                            <TableColumn prefWidth="206.80001831054688" text="Address" />
-                            <TableColumn prefWidth="124.00006103515625" text="Region" />
-                            <TableColumn prefWidth="122.7999267578125" text="Country" />
-                            <TableColumn prefWidth="81.199951171875" text="Postal Code" />
-                            <TableColumn minWidth="0.0" prefWidth="142.0" text="Phone Number" />
+                            <TableColumn fx:id="customersCustomer_IDCol" prefWidth="89.19998860359192" text="Customer_ID" />
+                            <TableColumn fx:id="customersNameCol" prefWidth="136.7999725341797" text="Name" />
+                            <TableColumn fx:id="customersAddressCol" prefWidth="206.80001831054688" text="Address" />
+                            <TableColumn fx:id="customersRegionCol" prefWidth="124.00006103515625" text="Region" />
+                            <TableColumn fx:id="customersCountryCol" prefWidth="122.7999267578125" text="Country" />
+                            <TableColumn fx:id="customersPostalCodeCol" prefWidth="81.199951171875" text="Postal Code" />
+                            <TableColumn fx:id="customersPhoneNumberCol" minWidth="0.0" prefWidth="142.0" text="Phone Number" />
                         </columns>
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
@@ -36,15 +36,15 @@
                     </TableView>
                 <ButtonBar prefHeight="50.0" prefWidth="200.0">
                     <buttons>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" text="Add">
+                        <Button mnemonicParsing="false" onAction="#addCustomerHandler" prefHeight="35.0" prefWidth="70.0" text="Add">
                             <font>
                                 <Font size="14.0" />
                             </font></Button>
-                        <Button layoutX="785.0" layoutY="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" text="Update">
+                        <Button layoutX="785.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateCustomerHandler" prefHeight="35.0" prefWidth="70.0" text="Update">
                             <font>
                                 <Font size="14.0" />
                             </font></Button>
-                        <Button layoutX="785.0" layoutY="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" text="Delete">
+                        <Button layoutX="785.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteCustomerHandler" prefHeight="35.0" prefWidth="70.0" text="Delete">
                             <font>
                                 <Font size="14.0" />
                             </font></Button>
@@ -53,7 +53,7 @@
                         <Insets left="50.0" right="30.0" top="15.0" />
                     </padding>
                 </ButtonBar>
-                <Hyperlink text="Appointments">
+                <Hyperlink onAction="#appointmentsSwitchHandler" text="Appointments">
                     <VBox.margin>
                         <Insets left="25.0" />
                     </VBox.margin>
@@ -61,7 +61,7 @@
                         <Font size="18.0" />
                     </font>
                 </Hyperlink>
-                <Hyperlink layoutX="10.0" layoutY="518.0" text="Reports">
+                <Hyperlink layoutX="10.0" layoutY="518.0" onAction="#reportsSwitchHandler" text="Reports">
                     <VBox.margin>
                         <Insets left="25.0" />
                     </VBox.margin>

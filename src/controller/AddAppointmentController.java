@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import util.SceneSwitch;
+
+import java.io.IOException;
 
 public class AddAppointmentController {
     @FXML
@@ -56,8 +59,10 @@ public class AddAppointmentController {
     private ComboBox<?> addEndAMPMCombo;
 
     @FXML
-    void cancelAddAppointmentInfoHandler(ActionEvent event) {
-
+    void cancelAddAppointmentInfoHandler(ActionEvent event) throws IOException {
+        //TODO: Add condition with warning message
+        SceneSwitch switcher = new SceneSwitch();
+        switcher.switchScenes(event, "/view/DisplayAppointments.fxml");
     }
 
     @FXML

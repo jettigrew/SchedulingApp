@@ -4,6 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import util.SceneSwitch;
+
+import java.io.IOException;
 
 public class UpdateCustomerController {
     @FXML
@@ -28,8 +31,10 @@ public class UpdateCustomerController {
     private TextField updatePhoneNumberText;
 
     @FXML
-    void cancelUpdateCustomerInfoHandler(ActionEvent event) {
-
+    void cancelUpdateCustomerInfoHandler(ActionEvent event) throws IOException {
+        //TODO: Add condition with warning message
+        SceneSwitch switcher = new SceneSwitch();
+        switcher.switchScenes(event, "/view/DisplayCustomers.fxml");
     }
 
     @FXML

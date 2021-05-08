@@ -4,6 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import util.CurrentUser;
+import util.SceneSwitch;
+
+import java.io.IOException;
 
 public class DisplayAppointmentsController {
     @FXML
@@ -97,27 +101,33 @@ public class DisplayAppointmentsController {
     private TableColumn<?, ?> allAppointmentsCustomer_IDCol;
 
     @FXML
-    void addAppointmentHandler(ActionEvent event) {
-
+    void addAppointmentHandler(ActionEvent event) throws IOException {
+        SceneSwitch switcher = new SceneSwitch();
+        switcher.switchScenes(event, "/view/AddAppointment.fxml");
     }
 
     @FXML
-    void customersSwitchHandler(ActionEvent event) {
-
+    void customersSwitchHandler(ActionEvent event) throws IOException {
+        SceneSwitch switcher = new SceneSwitch();
+        switcher.switchScenes(event, "/view/DisplayCustomers.fxml");
     }
 
     @FXML
     void deleteAppointmentHandler(ActionEvent event) {
-
+        //TODO: Add selection condition
+        //TODO: Code delete functionality
     }
 
     @FXML
-    void reportsSwitchHandler(ActionEvent event) {
-
+    void reportsSwitchHandler(ActionEvent event) throws IOException {
+        SceneSwitch switcher = new SceneSwitch();
+        switcher.switchScenes(event, "/view/DisplayReports.fxml");
     }
 
     @FXML
-    void updateAppointmentHandler(ActionEvent event) {
-
+    void updateAppointmentHandler(ActionEvent event) throws IOException {
+        //TODO: Add selection condition
+        SceneSwitch switcher = new SceneSwitch();
+        switcher.switchScenes(event, "/view/UpdateAppointment.fxml");
     }
 }
