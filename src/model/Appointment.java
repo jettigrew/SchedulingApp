@@ -1,5 +1,9 @@
 package model;
 
+import DAO.ContactDAO;
+
+import java.time.LocalDateTime;
+
 public class Appointment {
     private int appointmentID;
     private String appointmentTitle;
@@ -8,19 +12,59 @@ public class Appointment {
     private String appointmentType;
     private String appointmentStart;
     private String appointmentEnd;
-    private String createDate;
+    private LocalDateTime createDate;
     private String createdBy;
-    private String lastUpdate;
+    private LocalDateTime lastUpdate;
     private String lastUpdatedBy;
     private int customerID;
     private int userID;
     private int contactID;
+    private String associatedContactName;
 
     public Appointment() {}
 
-    public Appointment(int appointmentID, String appointmentTitle, String appointmentDescription, String appointmentLocation,
-                       String appointmentType, String appointmentStart, String appointmentEnd, String createDate, String createdBy,
-                       String lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID) {
+    public Appointment(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,
+                       String appointmentStart, String appointmentEnd, LocalDateTime createDate, String createdBy,
+                       LocalDateTime lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID, String associatedContactName) {
+        this.appointmentTitle = appointmentTitle;
+        this.appointmentDescription = appointmentDescription;
+        this.appointmentLocation = appointmentLocation;
+        this.appointmentType = appointmentType;
+        this.appointmentStart = appointmentStart;
+        this.appointmentEnd = appointmentEnd;
+        this.createDate = createDate;
+        this.createdBy = createdBy;
+        this.lastUpdate = lastUpdate;
+        this.lastUpdatedBy = lastUpdatedBy;
+        this.customerID = customerID;
+        this.userID = userID;
+        this.contactID = contactID;
+        this.associatedContactName = associatedContactName;
+    }
+
+    public Appointment(int appointmentID, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,
+                       String appointmentStart, String appointmentEnd, LocalDateTime createDate, String createdBy,
+                       LocalDateTime lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID, String associatedContactName) {
+        this.appointmentID = appointmentID;
+        this.appointmentTitle = appointmentTitle;
+        this.appointmentDescription = appointmentDescription;
+        this.appointmentLocation = appointmentLocation;
+        this.appointmentType = appointmentType;
+        this.appointmentStart = appointmentStart;
+        this.appointmentEnd = appointmentEnd;
+        this.createDate = createDate;
+        this.createdBy = createdBy;
+        this.lastUpdate = lastUpdate;
+        this.lastUpdatedBy = lastUpdatedBy;
+        this.customerID = customerID;
+        this.userID = userID;
+        this.contactID = contactID;
+        this.associatedContactName = associatedContactName;
+    }
+
+    public Appointment(int appointmentID, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,
+                       String appointmentStart, String appointmentEnd, LocalDateTime createDate, String createdBy,
+                       LocalDateTime lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID) {
         this.appointmentID = appointmentID;
         this.appointmentTitle = appointmentTitle;
         this.appointmentDescription = appointmentDescription;
@@ -37,9 +81,7 @@ public class Appointment {
         this.contactID = contactID;
     }
 
-    public int getAppointmentID() {
-        return appointmentID;
-    }
+    public int getAppointmentID() { return appointmentID; }
 
     public void setAppointmentID(int appointmentID) {
         this.appointmentID = appointmentID;
@@ -57,9 +99,7 @@ public class Appointment {
         return appointmentDescription;
     }
 
-    public void setAppointmentDescription(String appointmentDescription) {
-        this.appointmentDescription = appointmentDescription;
-    }
+    public void setAppointmentDescription(String appointmentDescription) { this.appointmentDescription = appointmentDescription; }
 
     public String getAppointmentLocation() {
         return appointmentLocation;
@@ -93,11 +133,11 @@ public class Appointment {
         this.appointmentEnd = appointmentEnd;
     }
 
-    public String getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
@@ -109,11 +149,11 @@ public class Appointment {
         this.createdBy = createdBy;
     }
 
-    public String getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(String lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
@@ -148,4 +188,8 @@ public class Appointment {
     public void setContactID(int contactID) {
         this.contactID = contactID;
     }
+
+    public String getAssociatedContactName() {return associatedContactName;}
+
+    public void setAssociatedContactName(String associatedContactName) {this.associatedContactName = associatedContactName;}
 }

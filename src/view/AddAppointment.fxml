@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointmentController">
+<AnchorPane prefHeight="600.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointmentController">
    <children>
       <VBox layoutX="-1.0" layoutY="-5.0" prefHeight="610.0" prefWidth="450.0">
          <children>
@@ -67,22 +67,17 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label text="Contact:" GridPane.rowIndex="4">
+                  <Label text="Type:" GridPane.rowIndex="4">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label text="Type:" GridPane.rowIndex="5">
+                  <Label text="Contact:" GridPane.rowIndex="5">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
                   <Label text="Start Date:" GridPane.rowIndex="6">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label text="End Date:" GridPane.rowIndex="8">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -97,16 +92,14 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="addContactCombo" prefWidth="175.0" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="addContactCombo" prefWidth="175.0" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="addAppointment_IDText" GridPane.columnIndex="1" />
                   <TextField fx:id="addTitleText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="addDescriptionText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="addLocationText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <DatePicker fx:id="addStartDatePicker" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <DatePicker fx:id="addEndDatePicker" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <DatePicker fx:id="addMeetingDatePicker" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <ComboBox fx:id="addCustomer_IDCombo" prefWidth="175.0" promptText="Customer_ID" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <ComboBox fx:id="addUser_IDCombo" prefWidth="175.0" promptText="User_ID" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <ComboBox fx:id="addTypeCombo" prefWidth="175.0" promptText="Meeting type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Start Time:" GridPane.rowIndex="7">
                      <font>
                         <Font size="16.0" />
@@ -155,6 +148,13 @@
                         </ComboBox>
                      </children>
                   </HBox>
+                  <TextField fx:id="addTypeText" layoutX="138.0" layoutY="116.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="End Date:" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="addEndDatePicker" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                </children>
             </GridPane>
             <ButtonBar prefHeight="65.0" prefWidth="450.0">

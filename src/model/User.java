@@ -1,17 +1,29 @@
 package model;
 
+import java.time.LocalDateTime;
+
 public class User {
     private int userID;
     private String userName;
     private String password;
-    private String createDate;
+    private LocalDateTime createDate;
     private String createdBy;
-    private String lastUpdate;
+    private LocalDateTime lastUpdate;
     private String lastUpdatedBy;
 
     public User() {}
 
-    public User(int userID, String userName, String password, String createDate, String createdBy, String lastUpdate,
+    public User(String userName, String password, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate,
+                String lastUpdatedBy) {
+        this.userName = userName;
+        this.password = password;
+        this.createDate = createDate;
+        this.createdBy = createdBy;
+        this.lastUpdate = lastUpdate;
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public User(int userID, String userName, String password, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate,
                 String lastUpdatedBy) {
         this.userID = userID;
         this.userName = userName;
@@ -46,11 +58,11 @@ public class User {
         this.password = password;
     }
 
-    public String getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
@@ -62,11 +74,11 @@ public class User {
         this.createdBy = createdBy;
     }
 
-    public String getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(String lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

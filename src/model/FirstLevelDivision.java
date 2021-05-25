@@ -1,18 +1,30 @@
 package model;
 
+import java.time.LocalDateTime;
+
 public class FirstLevelDivision {
     private int divisionID;
     private String divisionName;
-    private String createDate;
+    private LocalDateTime createDate;
     private String createdBy;
-    private String lastUpdate;
+    private LocalDateTime lastUpdate;
     private String lastUpdatedBy;
     private int countryID;
 
     public FirstLevelDivision() {}
 
-    public FirstLevelDivision(int divisionID, String divisionName, String createDate, String createdBy, String lastUpdate,
-                              String lastUpdatedBy, int countryID) {
+    public FirstLevelDivision(String divisionName, LocalDateTime createDate, String createdBy,
+                              LocalDateTime lastUpdate, String lastUpdatedBy, int countryID) {
+        this.divisionName = divisionName;
+        this.createDate = createDate;
+        this.createdBy = createdBy;
+        this.lastUpdate = lastUpdate;
+        this.lastUpdatedBy = lastUpdatedBy;
+        this.countryID = countryID;
+    }
+
+    public FirstLevelDivision(int divisionID, String divisionName, LocalDateTime createDate, String createdBy,
+                              LocalDateTime lastUpdate, String lastUpdatedBy, int countryID) {
         this.divisionID = divisionID;
         this.divisionName = divisionName;
         this.createDate = createDate;
@@ -38,11 +50,11 @@ public class FirstLevelDivision {
         this.divisionName = divisionName;
     }
 
-    public String getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
@@ -54,11 +66,11 @@ public class FirstLevelDivision {
         this.createdBy = createdBy;
     }
 
-    public String getLastUpdate() {
+    public LocalDateTime getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(String lastUpdate) {
+    public void setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
@@ -76,5 +88,10 @@ public class FirstLevelDivision {
 
     public void setCountryID(int countryID) {
         this.countryID = countryID;
+    }
+
+    @Override
+    public String toString() {
+        return divisionName;
     }
 }

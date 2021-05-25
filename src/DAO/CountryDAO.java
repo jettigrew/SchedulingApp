@@ -3,13 +3,16 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Country;
+import util.CurrentUser;
 import util.DatabaseConnection;
 import util.DatabaseQuery;
+import util.TimeConverter;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class CountryDAO {
     public static boolean createCountry(Country country) {
@@ -22,7 +25,7 @@ public class CountryDAO {
             PreparedStatement ps = DatabaseQuery.getPreparedStatement();
 
             ps.setString(1, country.getCountryName());
-            ps.setString(2, country.getCreateDate());
+            ps.setObject(2, country.getCreateDate());
             ps.setString(3, country.getCreatedBy());
             ps.setString(4, country.getLastUpdatedBy());
 
@@ -48,9 +51,9 @@ public class CountryDAO {
             while (rs.next()) {
                 int id = rs.getInt("Country_ID");
                 String countryName = rs.getString("Country");
-                String createDate = rs.getString("Create_Date");
+                LocalDateTime createDate = TimeConverter.databaseToLocal(rs.getString("Create_Date"));
                 String createdBy = rs.getString("Created_By");
-                String lastUpdate = rs.getString("Last_Update");
+                LocalDateTime lastUpdate = TimeConverter.databaseToLocal(rs.getString("Last_Update"));
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
 
                 Country newCountry = new Country(id, countryName, createDate,createdBy, lastUpdate, lastUpdatedBy);
@@ -78,9 +81,9 @@ public class CountryDAO {
                 Country country = new Country();
                 country.setCountryID(rs.getInt("Country_ID"));
                 country.setCountryName(rs.getString("Country"));
-                country.setCreateDate(rs.getString("Create_Date"));
+                country.setCreateDate(TimeConverter.databaseToLocal((rs.getString("Create_Date"))));
                 country.setCreatedBy(rs.getString("Created_By"));
-                country.setLastUpdate(rs.getString("Last_Update"));
+                country.setLastUpdate(TimeConverter.databaseToLocal((rs.getString("Last_Update"))));
                 country.setLastUpdatedBy(rs.getString("Last_Updated_By"));
 
                 allCountries.add(country);
@@ -93,7 +96,7 @@ public class CountryDAO {
 
     public static boolean updateCountry(int countryID, String newCountryName) {
         Connection connection = DatabaseConnection.getConnection();
-        String sqlUpdateStatement = "UPDATE countries SET Country = ? WHERE Country_ID = ?";
+        String sqlUpdateStatement = "UPDATE countries SET Country = ?, Last_Updated_By = ? WHERE Country_ID = ?";
 
         DatabaseQuery.createPreparedStatement(connection, sqlUpdateStatement);
 
@@ -101,7 +104,8 @@ public class CountryDAO {
             PreparedStatement ps = DatabaseQuery.getPreparedStatement();
 
             ps.setString(1, newCountryName);
-            ps.setInt(2, countryID);
+            ps.setString(2, CurrentUser.getUserName());
+            ps.setInt(3, countryID);
 
             return ps.executeUpdate() != 0;
 

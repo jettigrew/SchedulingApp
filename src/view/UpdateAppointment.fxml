@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="610.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateAppointmentController">
+<AnchorPane prefHeight="610.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateAppointmentController">
    <children>
       <VBox prefHeight="610.0" prefWidth="450.0">
          <children>
@@ -64,12 +64,12 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label text="Contact:" GridPane.rowIndex="4">
+                  <Label text="Type:" GridPane.rowIndex="4">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label text="Type:" GridPane.rowIndex="5">
+                  <Label text="Contact:" GridPane.rowIndex="5">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -80,11 +80,6 @@
                      </font>
                   </Label>
                   <Label text="Start Time:" GridPane.rowIndex="7">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label text="End Date:" GridPane.rowIndex="8">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -111,12 +106,10 @@
                   <TextField fx:id="updateTitleText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="updateDescriptionText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="updateLocationText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="updateContactCombo" prefWidth="150.0" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="updateTypeCombo" prefWidth="150.0" promptText="Meeting type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="updateContactCombo" prefWidth="150.0" promptText="Contact" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <ComboBox fx:id="updateCustomer_IDCombo" prefWidth="150.0" promptText="Customer_ID" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <ComboBox fx:id="updateUser_IDCombo" prefWidth="150.0" promptText="User_ID" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <DatePicker fx:id="updateStartDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <DatePicker fx:id="updateEndDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <DatePicker fx:id="updateMeetingDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
                         <ComboBox fx:id="updateStartHourCombo" prefWidth="85.0" promptText="Hour">
@@ -155,6 +148,13 @@
                         </ComboBox>
                      </children>
                   </HBox>
+                  <TextField fx:id="updateTypeText" layoutX="139.0" layoutY="116.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="End Date:" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="updateEndDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                </children>
                <VBox.margin>
                   <Insets left="25.0" right="25.0" top="15.0" />

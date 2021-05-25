@@ -1,17 +1,33 @@
 package controller;
 
+import DAO.AppointmentDAO;
+import DAO.CustomerDAO;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import util.CurrentUser;
-import util.SceneSwitch;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.util.Callback;
+import model.Appointment;
+import model.Contact;
+import model.User;
+import util.*;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.time.LocalDateTime;
 
 public class DisplayAppointmentsController {
     @FXML
-    private TableView<?> weekAppointmentsTable;
+    private TableView<Appointment> weekAppointmentsTable;
 
     @FXML
     private TableColumn<?, ?> weekAppointmentsAppointment_IDCol;
@@ -41,7 +57,7 @@ public class DisplayAppointmentsController {
     private TableColumn<?, ?> weekAppointmentsCustomer_IDCol;
 
     @FXML
-    private TableView<?> monthAppointmentsTable;
+    private TableView<Appointment> monthAppointmentsTable;
 
     @FXML
     private TableColumn<?, ?> monthAppointmentsAppointment_IDCol;
@@ -71,7 +87,7 @@ public class DisplayAppointmentsController {
     private TableColumn<?, ?> monthAppointmentsCustomer_IDCol;
 
     @FXML
-    private TableView<?> allAppointmentsTable;
+    private TableView<Appointment> allAppointmentsTable;
 
     @FXML
     private TableColumn<?, ?> allAppointmentsAppointment_IDCol;
@@ -113,9 +129,39 @@ public class DisplayAppointmentsController {
     }
 
     @FXML
-    void deleteAppointmentHandler(ActionEvent event) {
-        //TODO: Add selection condition
-        //TODO: Code delete functionality
+    void deleteAppointmentHandler(ActionEvent event) throws IOException {
+        Appointment selectedAppointment;
+
+        if (!allAppointmentsTable.getSelectionModel().isEmpty()) {
+            selectedAppointment = allAppointmentsTable.getSelectionModel().getSelectedItem();
+        }
+        else if (!monthAppointmentsTable.getSelectionModel().isEmpty()) {
+            selectedAppointment = monthAppointmentsTable.getSelectionModel().getSelectedItem();
+        }
+        else if (!weekAppointmentsTable.getSelectionModel().isEmpty()) {
+            selectedAppointment = weekAppointmentsTable.getSelectionModel().getSelectedItem();
+        }
+        else {
+            AlertGenerator deletionFailedAlert = new AlertGenerator();
+            deletionFailedAlert.createAlert("ERROR", "You must select an appointment to delete.");
+            return;
+        }
+
+        AlertGenerator deletionConfirmationAlert = new AlertGenerator();
+        if (deletionConfirmationAlert.getConfirmationAlert("Are you sure you want to delete appointment?")) {
+            if (AppointmentDAO.deleteAppointment(selectedAppointment.getAppointmentID())) {
+                SceneSwitch switcher = new SceneSwitch();
+                switcher.switchScenes(event, "/view/DisplayAppointments.fxml");
+                String deletionString = "Appointment " + selectedAppointment.getAppointmentID() + " " +
+                        selectedAppointment.getAppointmentTitle() + " of type " + selectedAppointment.getAppointmentType() +
+                        " successfully deleted.";
+                AlertGenerator appointmentDeletionAlert = new AlertGenerator();
+                appointmentDeletionAlert.createAlert("INFORMATION", deletionString);
+            } else {
+                AlertGenerator deletionFailedAlert = new AlertGenerator();
+                deletionFailedAlert.createAlert("INFORMATION", "Appointment was not deleted.");
+            }
+        }
     }
 
     @FXML
@@ -125,9 +171,79 @@ public class DisplayAppointmentsController {
     }
 
     @FXML
-    void updateAppointmentHandler(ActionEvent event) throws IOException {
-        //TODO: Add selection condition
-        SceneSwitch switcher = new SceneSwitch();
-        switcher.switchScenes(event, "/view/UpdateAppointment.fxml");
+    void updateAppointmentHandler(ActionEvent event) throws IOException, ParseException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/view/UpdateAppointment.fxml"));
+        loader.load();
+
+        if (!allAppointmentsTable.getSelectionModel().isEmpty()) {
+            UpdateAppointmentController updateAppointmentController = loader.getController();
+            updateAppointmentController.sendAppointment(allAppointmentsTable.getSelectionModel().getSelectedItem());
+
+            Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        else if (!monthAppointmentsTable.getSelectionModel().isEmpty()) {
+            UpdateAppointmentController updateAppointmentController = loader.getController();
+            updateAppointmentController.sendAppointment(monthAppointmentsTable.getSelectionModel().getSelectedItem());
+
+            Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        else if (!weekAppointmentsTable.getSelectionModel().isEmpty()) {
+            UpdateAppointmentController updateAppointmentController = loader.getController();
+            updateAppointmentController.sendAppointment(weekAppointmentsTable.getSelectionModel().getSelectedItem());
+
+            Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        else {
+            AlertGenerator updateFailedAlert = new AlertGenerator();
+            updateFailedAlert.createAlert("ERROR", "You must select an appointment to update.");
+        }
+    }
+
+    @FXML
+    public void initialize() throws ParseException {
+        weekAppointmentsTable.setItems(AppointmentDAO.retrieveAllAppointments("weekly"));
+        weekAppointmentsAppointment_IDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        weekAppointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
+        weekAppointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("appointmentDescription"));
+        weekAppointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
+        weekAppointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("associatedContactName"));
+        weekAppointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
+        weekAppointmentsStartCol.setCellValueFactory(new PropertyValueFactory<>("appointmentStart"));
+        weekAppointmentsEndCol.setCellValueFactory(new PropertyValueFactory<>("appointmentEnd"));
+        weekAppointmentsCustomer_IDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+
+        monthAppointmentsTable.setItems(AppointmentDAO.retrieveAllAppointments("monthly"));
+        monthAppointmentsAppointment_IDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        monthAppointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
+        monthAppointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("appointmentDescription"));
+        monthAppointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
+        monthAppointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("associatedContactName"));
+        monthAppointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
+        monthAppointmentsStartCol.setCellValueFactory(new PropertyValueFactory<>("appointmentStart"));
+        monthAppointmentsEndCol.setCellValueFactory(new PropertyValueFactory<>("appointmentEnd"));
+        monthAppointmentsCustomer_IDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+
+        allAppointmentsTable.setItems(AppointmentDAO.retrieveAllAppointments("all"));
+        allAppointmentsAppointment_IDCol.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        allAppointmentsTitleCol.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
+        allAppointmentsDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("appointmentDescription"));
+        allAppointmentsLocationCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
+        allAppointmentsContactCol.setCellValueFactory(new PropertyValueFactory<>("associatedContactName"));
+        allAppointmentsTypeCol.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
+        allAppointmentsStartCol.setCellValueFactory(new PropertyValueFactory<>("appointmentStart"));
+        allAppointmentsEndCol.setCellValueFactory(new PropertyValueFactory<>("appointmentEnd"));
+        allAppointmentsCustomer_IDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+
+
     }
 }

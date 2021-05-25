@@ -1,12 +1,22 @@
 package util;
 
-public class CurrentUser {
+public class CurrentUser{
+    private static int userID;
     private static String userName;
 
     public CurrentUser() {}
 
-    public CurrentUser(String userName) {
+    public CurrentUser(int userID, String userName) {
+        this.userID = userID;
         this.userName = userName;
+    }
+
+    public static int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public static String getUserName() {

@@ -7,6 +7,11 @@ public class Contact {
 
     public Contact() {}
 
+    public Contact(String contactName, String emailAddress) {
+        this.contactName = contactName;
+        this.emailAddress = emailAddress;
+    }
+
     public Contact(int contactID, String contactName, String emailAddress) {
         this.contactID = contactID;
         this.contactName = contactName;
@@ -35,5 +40,10 @@ public class Contact {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    @Override
+    public String toString(){
+        return contactName;
     }
 }

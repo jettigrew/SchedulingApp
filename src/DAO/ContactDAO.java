@@ -24,7 +24,11 @@ public class ContactDAO {
             ps.setString(1, contact.getContactName());
             ps.setString(2, contact.getEmailAddress());
 
-            return ps.executeUpdate() != 0;
+            //return ps.executeUpdate() != 0;
+            ps.execute();
+
+            //TODO: Fix this
+            if(ps.getUpdateCount() > 0) { System.out.println("Successfully added.");}
 
         } catch (SQLException throwable) {
             throwable.printStackTrace();

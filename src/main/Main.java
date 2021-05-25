@@ -1,27 +1,26 @@
 package main;
 
+import DAO.AppointmentDAO;
+import DAO.CustomerDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import util.DatabaseConnection;
-import util.TimeConverter;
+import model.Appointment;
+import util.*;
 
-import java.sql.Date;
-import java.text.DateFormat;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+
 
 public class Main extends Application {
 
     public static void main(String[] args) {
         DatabaseConnection.connect();
         launch(args);
-
-        System.out.println(TimeConverter.databaseToLocal("2021-05-05 22:38:35"));
-
         DatabaseConnection.disconnect();
     }
 
